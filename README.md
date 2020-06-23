@@ -10,6 +10,7 @@ var (
 		}, []string{},
 	)
 )
+````
 - 将记录好的指标，以URL方式暴露
 ````go
 func Register() {
@@ -17,9 +18,9 @@ func Register() {
 	prometheus.MustRegister(requestLatency)
 	prometheus.MustRegister(requestTimeStamp)
 }
-
+````
 - 文件结构
-
+````
 ├── Dockerfile                   制作镜像所使用
 ├── README
 ├── deploy                       部署资源对象时使用的配置文件
@@ -39,3 +40,4 @@ func Register() {
 │   └── main.go
 └── stack                        提供stack接口
     └── stack.go
+````
