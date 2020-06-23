@@ -2,6 +2,7 @@
 
 
 - 文件结构
+
 ````
 ├── Dockerfile                   制作镜像所使用
 ├── README
@@ -20,5 +21,5 @@
 │   └── main.go
 ├── without_metrics              除5，6小节外参考本目录
 │   └── main.go
-└── stack
+└── stack                        提供stack接口
     └── stack.go
