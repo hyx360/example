@@ -59,7 +59,7 @@ func (t *RequestLatency) Observe() {
 // RequestIncrease increases the counter of request handled by this service
 func RequestIncrease() {
 	requestCount.WithLabelValues().Add(1)
-	
+	//设置时间戳
 	t_string := strconv.FormatInt(time.Now().Unix(),10)
 	t_float, _ := strconv.ParseFloat(t_string,64)
 	requestTimeStamp.Set(t_float)
