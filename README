@@ -1,8 +1,7 @@
-# 云计算实验课实例
+# example
 
-【注】本示例使用Golang语言，演示本实验的基本代码逻辑
 
-实验共分为6个小节，参见：https://www.yuque.com/docs/share/9b25593b-2979-452a-a723-b04cf00d57c4?#
+- 文件结构
 ````
 ├── Dockerfile                   制作镜像所使用
 ├── README
@@ -22,5 +21,3 @@
 └── without_metrics              除5，6小节外参考本目录
     └── main.go
 
-
-something added
