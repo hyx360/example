@@ -1,10 +1,25 @@
 # example
 
-## 工作逻辑
+- 增添指标：requsetTimeStamp，记录处理请求的时间戳
+````go
+var (
+	requestCount = prometheus.NewCounterVec(
+		prometheus.CounterOpts{
+			Name:      "request_total",
+			Help:      "Number of request processed by this service.",
+		}, []string{},
+	)
+)
+- 将记录好的指标，以URL方式暴露
+````go
+func Register() {
+	prometheus.MustRegister(requestCount)
+	prometheus.MustRegister(requestLatency)
+	prometheus.MustRegister(requestTimeStamp)
+}
 
 - 文件结构
 
-````
 ├── Dockerfile                   制作镜像所使用
 ├── README
 ├── deploy                       部署资源对象时使用的配置文件
