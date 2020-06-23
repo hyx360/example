@@ -31,6 +31,7 @@ func Register() {
 	prometheus.MustRegister(requestTimeStamp)
 }
 ````
+
 ## stack.go
 - 编写stack包，提供stack接口
 ````go
@@ -72,7 +73,7 @@ func initStack() *stack.ItemStack{
 	return &s
 }
 ````
-- 改写Fibonacci函数，增加栈的插入操作，增加requestLatency
+- 改写Fibonacci函数，增加栈的插入操作，以增加requestLatency
 ````go
 func Fibonacci(n int)int{
 	if n<=2{
