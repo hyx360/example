@@ -18,6 +18,7 @@
 │   └── metrics.go
 ├── metrics_version              第6小节参考本目录
 │   └── main.go
-└── without_metrics              除5，6小节外参考本目录
-    └── main.go
-
+├── without_metrics              除5，6小节外参考本目录
+│   └── main.go
+└── stack
+    └── stack.go
