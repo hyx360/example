@@ -10,8 +10,8 @@ import (
 	"example/stack"
 )
 
-//var s stack.ItemStack
 
+// 初始化栈
 func initStack() *stack.ItemStack{
 	s := stack.ItemStack{}
 	s.New()
@@ -32,7 +32,6 @@ func index(w http.ResponseWriter, r *http.Request) {
 	timer:=metrics.NewAdmissionLatency()
 	metrics.RequestIncrease()
 	num:=os.Getenv("Num")
-//	s := initStack()
 	if num==""{
 		Fibonacci(10)
 		_,err:=w.Write([]byte("there is no env Num. Computation successed\n"))
@@ -50,6 +49,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 	timer.Observe()
 }
 
+// 改写后的Fibonacci函数
 func Fibonacci(n int)int{
 	if n<=2{
 		s := initStack()
