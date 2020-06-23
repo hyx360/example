@@ -1,5 +1,5 @@
 # example
-
+## metrics.go
 - 增添指标：requsetTimeStamp，记录处理请求的时间戳
 ````go
 var (
@@ -11,6 +11,18 @@ var (
 	)
 )
 ````
+
+- 设置时间戳
+````go
+func RequestIncrease() {
+	requestCount.WithLabelValues().Add(1)
+	//设置时间戳
+	t_string := strconv.FormatInt(time.Now().Unix(),10)
+	t_float, _ := strconv.ParseFloat(t_string,64)
+	requestTimeStamp.Set(t_float)
+}
+````
+
 - 将记录好的指标，以URL方式暴露
 ````go
 func Register() {
@@ -19,7 +31,60 @@ func Register() {
 	prometheus.MustRegister(requestTimeStamp)
 }
 ````
-- 文件结构
+## stack.go
+- 编写stack包，提供stack接口
+````go
+package stack
+
+type Item interface {
+}
+
+// ItemStack：保存栈的item
+type ItemStack struct {
+    items []Item
+}
+
+// 新建一个ItemStack
+func (s *ItemStack) New() *ItemStack {
+    s.items = []Item{}
+    return s
+}
+
+// 添加item到栈顶端
+func (s *ItemStack) Push(t Item) {
+    s.items = append(s.items, t)
+}
+
+// 从栈顶端移除一个item
+func (s *ItemStack) Pop() *Item {
+    item := s.items[len(s.items)-1] // 后进先出
+    s.items = s.items[0:len(s.items)-1]
+    return &item
+
+}
+````
+## main.go
+- 初始化栈
+````go
+func initStack() *stack.ItemStack{
+	s := stack.ItemStack{}
+	s.New()
+	return &s
+}
+````
+- 改写Fibonacci函数，增加栈的插入操作，增加requestLatency
+````go
+func Fibonacci(n int)int{
+	if n<=2{
+		s := initStack()
+		s.Push(1)
+		return 1
+	}else{
+		return Fibonacci(n-1)+Fibonacci(n-2)
+	}
+}
+````
+## 文件结构
 ````
 ├── Dockerfile                   制作镜像所使用
 ├── README
